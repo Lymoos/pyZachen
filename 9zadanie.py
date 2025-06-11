@@ -47,3 +47,16 @@ def variant_15(L):
     sum2 = sum(p * k for p, k in product(P, K))
 
     return sum1 + sum2
+
+
+def main(hex_string):
+    value = int(hex_string, 16)
+
+    b1 = value & 0b111111                          # 6 бит (0–5)
+    b2 = (value >> 6) & 0b111                      # 3 бита (6–8)
+    b3 = (value >> 9) & 0b111                      # 3 бита (9–11)
+    b4 = (value >> 12) & 0b11                      # 2 бита (12–13)
+    b5 = (value >> 14) & 0b11                      # 2 бита (14–15)
+    b6 = (value >> 16) & 0b111111                  # 6 бит (16–21)
+
+    return tuple(hex(b) for b in (b1, b2, b3, b4, b5, b6))
